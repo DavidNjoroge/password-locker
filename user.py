@@ -1,10 +1,12 @@
 # class for the user
+from credential import Credential
 
 class User:
     """
     class that creates a new user
     """
     users_list=[]
+    user_credentials=[]
 
     def __init__(self, name,password):
         '''
@@ -12,6 +14,7 @@ class User:
         '''
         self.name=name
         self.password=password
+        # self.credentials=dataCred
 
     def register(self):
         '''
@@ -19,13 +22,23 @@ class User:
         '''
         User.users_list.append(self)
     @classmethod
-    def login( cls,name,password):
+    def save_cred_user(cls,cred):
         '''
-        method that checks if the user is already register and then login
+        '''
+        writen_cred=Credential(cred[0],cred[1],cred[2])
+        cls.user_credentials.append(writen_cred.save_credential())
+        print(len(User.user_credentials))
+        # account.user_credentials.append(cred)
+        # self.new_cred.save_credential()
+        # User.user_credentials.append(self)
+    @classmethod
+    def login_checker( cls,name,password):
+        '''
+        method that checks if the user is already registered (and then login)
         '''
         for user in User.users_list:
             if user.name==name and user.password==password:
-                return True
+                return user
             return False
     @classmethod
     def display_users(cls):

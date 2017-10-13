@@ -12,6 +12,9 @@ class TestUser(unittest.TestCase):
         self.the_user=User('david','password')
         self.the_user1=User('njoroge','drowssap')
 
+        self.new_cred=('facebook','david@gmail.com','123qwerty')
+
+
 
     def tearDown(self):
         User.users_list=[]
@@ -22,6 +25,7 @@ class TestUser(unittest.TestCase):
         '''
         self.assertEqual(self.the_user.name,'david')
         self.assertEqual(self.the_user.password,'password')
+
     def test_register(self):
         '''
         test if the user is saved
@@ -29,7 +33,7 @@ class TestUser(unittest.TestCase):
         self.the_user.register()
         self.assertEqual(len(User.users_list),1)
 
-    def test_login(self):
+    def test_login_checker(self):
         '''
         test if you can login you input the username and passord and returns true
         args:
@@ -38,8 +42,14 @@ class TestUser(unittest.TestCase):
         self.the_user.register()
         self.the_user1.register()
 
-        to_login=User.login('david','password')
-        self.assertTrue(to_login)
+        to_login=User.login_checker('david','password')
+        # self.assertTrue(to_login)
+        self.assertEqual(to_login,self.the_user)
+
+    def test_login(self):
+        '''
+        test case, given a username should more or less login--to be implemented--
+        '''
 
     def test_display_all_users(self):
         '''
@@ -48,8 +58,17 @@ class TestUser(unittest.TestCase):
         self.the_user.register()
         self.assertEqual(len(User.display_users()),1)
 
+    def test_create_credentials(self):
+        '''
+        test case to save a credential within a user instance(account)
+        '''
+        self.the_user.register()
+        self.the_user1.register()
+        self.the_user.save_cred_user(self.new_cred)
 
-
+        # to_login=User.login_checker('david','password')
+        # self.save_cred_user(to_login,self.new_cred)
+        # assertEqual(len(self.the_user.user_credentials),1)
 
 if __name__=='__main__':
     unittest.main()

@@ -19,3 +19,4 @@ class Credential:
         method to save the credentials inputted
         '''
         Credential.cred_list.append(self)
+        return self.cred_list

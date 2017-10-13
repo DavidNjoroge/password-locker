@@ -14,23 +14,13 @@ def save_users(user):
     function that saves a new user
     '''
     user.register()
-def login_user(user):
+def login_user(name,password):
     '''
     function to login
     '''
-    new_user.User.login_user()
+    loggedin=User.login_checker(name,password)
+    return loggedin
 
-def create_credential(account,username,password):
-    '''
-    function that creates a new credential
-    '''
-    new_cred=Credential.save_credential(account,username,password)
-    return new_cred
-def save_credential(credential):
-    '''
-    function to save contact
-    '''
-    credential.save_credential()
 def display_users():
     '''
     function that returns all the saved users
@@ -58,6 +48,14 @@ def main():
             else:
                 print('\n')
                 print('you dont have any users')
+
+        elif short_code=='log':
+            print('enter your username')
+            user_name=input()
+            print('enter your password')
+            user_password=input()
+            login_user(user_name,user_password)
+
 
 
 
