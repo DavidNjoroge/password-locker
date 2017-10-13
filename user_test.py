@@ -41,6 +41,14 @@ class TestUser(unittest.TestCase):
         to_login=User.login('david','password')
         self.assertTrue(to_login)
 
+    def test_display_all_users(self):
+        '''
+        test case that tests if users list is returned
+        '''
+        self.the_user.register()
+        self.assertEqual(len(User.display_users()),1)
+
+
 
 
 if __name__=='__main__':

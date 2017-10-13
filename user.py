@@ -12,6 +12,7 @@ class User:
         '''
         self.name=name
         self.password=password
+
     def register(self):
         '''
         method that saves a new instance ie to register
@@ -26,3 +27,6 @@ class User:
             if user.name==name and user.password==password:
                 return True
             return False
+    @classmethod
+    def display_users(cls):
+        return cls.users_list
