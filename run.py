@@ -9,3 +9,15 @@ def register_user(name,password):
     new_user=User(name,password)
 
     return new_user
+def login_user(name,password):
+    '''
+    function to login
+    '''
+    new_user.User.login_user()
+
+def create_credential(account,username,password):
+    '''
+    function that creates a new credential
+    '''
+    new_cred=Credential.save_credential(account,username,password)
+    return new_cred
