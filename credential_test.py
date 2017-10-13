@@ -24,13 +24,13 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.new_cred.username,'david@gmail.com')
         self.assertEqual(self.new_cred.password,'123qwerty')
 
-    # def test_register(self):
-    #     '''
-    #     test if the user is saved
-    #     '''
-    #     self.the_user.register()
-    #     self.assertEqual(len(User.users_list),1)
-    #
+    def test_save(self):
+        '''
+        test if the credential is saved
+        '''
+        self.new_cred.save_credential()
+        self.assertEqual(len(Credential.cred_list),1)
+
     # def test_login(self):
     #     '''
     #     test if you can login you input the username and passord and returns true
