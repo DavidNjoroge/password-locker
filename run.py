@@ -54,7 +54,28 @@ def main():
             user_name=input()
             print('enter your password')
             user_password=input()
-            login_user(user_name,user_password)
+            respnse=login_user(user_name,user_password)
+            print(respnse)
+            if respnse==None:
+                print('wrong username or password')
+            else:
+                print('you are logged in')
+                print('\n')
+                while True:
+                    print('use shortcode "nc" for new credential "sc" to show credentials')
+                    short_code = input().lower()
+                    if short_code=='nc':
+                        short_code = input().lower()
+                        print("New credential")
+                        print("-"*10)
+                        print ("Account ....")
+                        account = input()
+
+                        print ("username ....")
+                        user_name = input()
+
+                        print ("password ....")
+                        password = input()
 
 
 
