@@ -12,4 +12,8 @@ class User:
         '''
         self.name=name
         self.password=password
-        
+    def register(self):
+        '''
+        method that saves a new instance ie to register
+        '''
+        User.users_list.append(self)
