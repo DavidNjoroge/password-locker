@@ -24,10 +24,11 @@ class User:
     @classmethod
     def save_cred_user(cls,cred):
         '''
+        method to save a credential for a user
         '''
-        writen_cred=Credential(cred[0],cred[1],cred[2])
-        cls.user_credentials.append(writen_cred.save_credential())
-        print(len(User.user_credentials))
+        # writen_cred=Credential(cred[0],cred[1],cred[2])
+        # cls.user_credentials.append(writen_cred.save_credential())
+        # print(len(User.user_credentials))
         # account.user_credentials.append(cred)
         # self.new_cred.save_credential()
         # User.user_credentials.append(self)
@@ -39,7 +40,7 @@ class User:
         for user in User.users_list:
             if user.name==name and user.password==password:
                 return user
-            return False
+        return False
     @classmethod
     def display_users(cls):
         return cls.users_list

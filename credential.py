@@ -6,13 +6,14 @@ class Credential:
     """
     cred_list=[]
 
-    def __init__(self, account,username,password):
+    def __init__(self, account,username,password,user):
         '''
         define the properties of the class
         '''
         self.account=account
         self.username=username
         self.password=password
+        self.user=user
 
     def save_credential(self):
         '''

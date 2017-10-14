@@ -26,6 +26,12 @@ def display_users():
     function that returns all the saved users
     '''
     return User.display_users()
+def create_credentials(account,username,password,user):
+    '''
+    function to save a credentials
+    '''
+    cred=[account,username,password]
+    User.save_cred_user(cred)
 
 def main():
     print('Hello! welcome to our password locker')
@@ -56,7 +62,7 @@ def main():
             user_password=input()
             respnse=login_user(user_name,user_password)
             print(respnse)
-            if respnse==None:
+            if respnse==False or respnse== None:
                 print('wrong username or password')
             else:
                 print('you are logged in')
@@ -76,6 +82,9 @@ def main():
 
                         print ("password ....")
                         password = input()
+                        create_credentials(account,user_name,password,respnse)
+                    if short_code=='out':
+                        break
 
 
 

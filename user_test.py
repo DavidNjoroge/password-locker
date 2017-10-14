@@ -1,5 +1,6 @@
 import unittest
 from user import User
+from credential import Credential
 
 class TestUser(unittest.TestCase):
     '''
@@ -12,7 +13,7 @@ class TestUser(unittest.TestCase):
         self.the_user=User('david','password')
         self.the_user1=User('njoroge','drowssap')
 
-        self.new_cred=('facebook','david@gmail.com','123qwerty')
+        # self.new_cred=('facebook','david@gmail.com','123qwerty',to_login)
 
 
 
@@ -60,15 +61,16 @@ class TestUser(unittest.TestCase):
 
     def test_create_credentials(self):
         '''
-        test case to save a credential within a user instance(account)
+        test case to create a credential within a user instance(account)
         '''
         self.the_user.register()
         self.the_user1.register()
-        self.the_user.save_cred_user(self.new_cred)
+        to_login=User.login_checker('david','password')
+        self.new_cred=Credential('facebook','david@gmail.com','123qwerty',to_login)
+        self.new_cred.save_credential()
+        self.assertEqual(len(Credential.cred_list),1)
 
-        # to_login=User.login_checker('david','password')
-        # self.save_cred_user(to_login,self.new_cred)
-        # assertEqual(len(self.the_user.user_credentials),1)
+    def
 
 if __name__=='__main__':
     unittest.main()
