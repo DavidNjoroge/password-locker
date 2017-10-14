@@ -9,13 +9,13 @@ class TestUser(unittest.TestCase):
         '''
         setup method to run before each test case
         '''
-        self.new_cred=Credential('facebook','david@gmail.com','123qwerty')
+        self.new_cred=Credential('facebook','david@gmail.com','123qwerty','david')
         # self.the_user1=User('njoroge','drowssap')
 
 
-    # def tearDown(self):
-    #     User.users_list=[]
-    #
+    def tearDown(self):
+        Credential.cred_list=[]
+
     def test_init(self):
         '''
         test case to test if the credential is initialized
@@ -30,19 +30,8 @@ class TestUser(unittest.TestCase):
         '''
         self.new_cred.save_credential()
         self.assertEqual(len(Credential.cred_list),1)
+        # self.assertEqual(Credential.cred_list.account,1)
 
-    # def test_login(self):
-    #     '''
-    #     test if you can login you input the username and passord and returns true
-    #     args:
-    #         name: the username
-    #     '''
-    #     self.the_user.register()
-    #     self.the_user1.register()
-    #
-    #     to_login=User.login('david','password')
-    #     self.assertTrue(to_login)
-    #
 
 
 if __name__=='__main__':

@@ -19,6 +19,7 @@ class TestUser(unittest.TestCase):
 
     def tearDown(self):
         User.users_list=[]
+        Credential.cred_list=[]
 
     def test_init(self):
         '''
@@ -70,7 +71,25 @@ class TestUser(unittest.TestCase):
         self.new_cred.save_credential()
         self.assertEqual(len(Credential.cred_list),1)
 
-    def
+    def test_save_credentials(self):
+        '''
+        test case to check if the credential saved belong to a particular user
+        '''
+        self.the_user.register()
+        to_login=User.login_checker('david','password')
+        self.new_cred=Credential('facebook','david@gmail.com','123qwerty',to_login)
+        self.new_cred.save_credential()
+        print(len(Credential.cred_list))
+        self.assertEqual(self.new_cred.account,'facebook')
+        for cred in Credential.cred_list:
+            print(cred.user)
+
+        self.assertEqual(Credential.cred_list[0].user,to_login)
+
+
+
+
+
 
 if __name__=='__main__':
     unittest.main()

@@ -30,8 +30,15 @@ def create_credentials(account,username,password,user):
     '''
     function to save a credentials
     '''
-    cred=[account,username,password]
-    User.save_cred_user(cred)
+    cred=Credential(account,username,password,user)
+    cred.save_credential()
+    # Credential.save_credential(account,username,password,user)
+
+def show_credentials():
+    '''
+    function to show all credentials for a specific user
+    '''
+    return Credential.cred_list
 
 def main():
     print('Hello! welcome to our password locker')
@@ -85,6 +92,13 @@ def main():
                         create_credentials(account,user_name,password,respnse)
                     if short_code=='out':
                         break
+                    if short_code=='show':
+                        print('this are all your credentials')
+                        print('\n')
+                        cred_list=show_credentials()
+                        for cred in cred_list:
+                            print(cred.account)
+
 
 
 
