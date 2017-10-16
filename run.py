@@ -39,11 +39,24 @@ def show_credentials():
     function to show all credentials for a specific user
     '''
     return Credential.cred_list
+def password_gen(leng):
+    '''
+    generate passowrd
+    arg:
+        length of the passord
+    '''
+    import random
+    s = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()?"
+
+    p =  "".join(random.sample(s,leng ))
+    return p
+
 
 def main():
     print('Hello! welcome to our password locker')
     while True:
         print('if you would like to register, use short code "reg" or if login use "log" ')
+        print('\n')
         short_code=input().lower()
         if short_code=='reg':
             print('enter your new username')
@@ -55,7 +68,6 @@ def main():
         elif short_code=='show':
             if display_users():
                 print('here is a list of all users')
-
                 for user in display_users():
                     print('the users are '+f"{user.name}")
             else:
@@ -68,28 +80,42 @@ def main():
             print('enter your password')
             user_password=input()
             respnse=login_user(user_name,user_password)
-            print(respnse)
+
             if respnse==False or respnse== None:
                 print('wrong username or password')
             else:
-                print('you are logged in')
-                print('\n')
+                print('you are logged in. if you want to log out use short code"out"')
+                print("-"*10)
                 while True:
-                    print('use shortcode "nc" for new credential "sc" to show credentials')
+                    print('use shortcode "new" for adding a new credential "show" to show credentials if you want to log out use short code "out"')
+                    print("-"*10)
+
                     short_code = input().lower()
-                    if short_code=='nc':
-                        short_code = input().lower()
+                    if short_code=='new':
                         print("New credential")
                         print("-"*10)
                         print ("Account ....")
                         account = input()
-
                         print ("username ....")
                         user_name = input()
+                        print('if you have a password use short_code "yes" if you want to create new use "gen"')
+                        short_code = input().lower()
+                        if short_code=='gen':
+                            print('how long do you want the password to be')
+                            print ("password length ....")
+                            password_length = int(input())
+                            password=password_gen(password_length)
+                            print('this is the password  "'+ password+'"')
+                            create_credentials(account,user_name,password,respnse)
+                            print('credential saved successfully')
+                            print("-"*10)
+                        elif short_code=='yes':
+                            print ("password ....")
+                            password = input()
+                            create_credentials(account,user_name,password,respnse)
+                            print('credential saved successfully')
 
-                        print ("password ....")
-                        password = input()
-                        create_credentials(account,user_name,password,respnse)
+
                     if short_code=='out':
                         break
                     if short_code=='show':
@@ -97,16 +123,8 @@ def main():
                         print('\n')
                         cred_list=show_credentials()
                         for cred in cred_list:
-                            print(cred.account)
-
-
-
-
-
-
-
-
-
+                            if cred.user==respnse:
+                                print('account: '+cred.account+' username: '+cred.username+' password: '+cred.password)
 if __name__ == '__main__':
 
     main()
