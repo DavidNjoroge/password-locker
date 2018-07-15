@@ -1,0 +1,9 @@
+language: python
+python:
+  - "3.6"
+# command to install dependencies
+install:
+  - pip install pyperclip
+# command to run tests
+script:
+  - python user_test.py
