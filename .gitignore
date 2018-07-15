@@ -1,2 +1,5 @@
 README1.md
-/__pycache__
+__pycache__/
+.idea/
+virtual/
+*pyc
